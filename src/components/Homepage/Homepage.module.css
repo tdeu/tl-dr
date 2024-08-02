@@ -1,0 +1,122 @@
+.homepage {
+  position: relative;
+  min-height: 150vh;
+  overflow-x: hidden;
+}
+
+.scrollableBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150vh;
+  background-image: url('/public/images/imagetest.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.staticContent {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+.heroTitle {
+  font-size: 3.5rem;
+  color: #ffffff;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  margin-bottom: 1rem;
+  text-align: center;
+  line-height: 1.2; /* Adjust line height for better spacing */
+}
+
+.heroSubtitle {
+  display: block;
+  font-size: 1.5rem;
+  font-weight: normal;
+  color: #e0e0e0;
+  margin-top: 0.5rem; /* Add some space between the main title and subtitle */
+}
+
+.cta {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cta:hover {
+  background-color: black;
+}
+
+.exploreMessage {
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: white;
+  font-weight: bold;
+}
+
+.bioSnippet {
+  max-width: 600px;
+  margin-top: 1rem;
+  font-size: 1rem;
+  color: #f0f0f0;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+  text-align: left;
+  background-color: rgba(0, 0, 0, 0.7);
+  padding: 1rem;
+  border-radius: 5px;
+  white-space: pre-wrap;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.link {
+  color: white; /* or any color that stands out */
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.link:hover {
+  color: #ffffff;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 10px 0;
+  text-align: center;
+  z-index: 1000;
+}
+
+.footerContent {
+  margin-bottom: 10px;
+}
+
+.footerLink {
+  margin: 0 10px;
+  color: #F2E3DA;
+  text-decoration: none;
+  font-size: 1.2rem; /* Adjust the font size to make the text larger */
+  
+}
+
+.copyright {
+  font-size: 1.2rem; /* Adjust the font size to make the text larger */
+  color: #F2E3DA;
+
+}

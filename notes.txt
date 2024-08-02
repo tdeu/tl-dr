@@ -1,0 +1,33 @@
+npx create-react-app TLDR_Website
+cd 
+npm start
+
+Lesson1
+public/: Contains the public assets, including index.html
+src/: Contains the source code of your React components and JavaScript files
+node_modules/: (You didn't mention this) Contains all the project dependencies
+package.json: Lists dependencies and scripts
+README.md: Project documentation
+
+Lesson2
+We cleaned up unnecessary files from the default project.
+We created a basic navbar component.
+We implemented the navbar in App.js.
+We added navigation items to the navbar (Home, About Me, Dapps, Writings, KODIT.AI).
+We discussed the use of <a> tags for navigation and mentioned that we'll use React Router later.
+
+Lesson3
+In this lesson, we focused on implementing routing in our React application 
+using React Router. We learned that React Router is a crucial library for creating 
+single-page applications (SPAs) with multiple views. It allows us to navigate 
+between different components without triggering full page reloads, 
+resulting in a smoother user experience.
+We installed React Router and set up basic routing in our App.js file. 
+We learned how to use the <BrowserRouter>, <Routes>, and <Route> components 
+to define our application's route structure. We also replaced the <a> tags in 
+our Navbar component with React Router's <Link> components, which prevent page 
+reloads when navigating.
+Additionally, we created separate files for each page component, 
+improving our project's organization and modularity. 
+We learned how to import these components and use them in our routing setup. 
+This structure allows for easier maintenance and development of individual pages.

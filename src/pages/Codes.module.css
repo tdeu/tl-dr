@@ -1,0 +1,17 @@
+.codesContainer {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .codesContainer h1 {
+    font-size: 2.5em;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  .codesContainer p {
+    font-size: 1.1em;
+    color: #666;
+    margin-bottom: 30px;
+  }

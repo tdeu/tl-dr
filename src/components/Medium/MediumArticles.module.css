@@ -1,0 +1,25 @@
+.articleList {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+  }
+  
+  .articleItem {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    list-style-type: none;
+  }
+  
+  .articleItem a {
+    font-size: 18px;
+    color: #0366d6;
+    text-decoration: none;
+  }
+  
+  .articleItem p {
+    margin-top: 5px;
+    color: #586069;
+    font-size: 0.9em;
+  }

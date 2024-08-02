@@ -1,38 +1,97 @@
+/* ... (keep existing styles) ... */
+
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
   min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.static-content {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  z-index: 2;
+}
+.static-content h1 {
+  font-size: 3rem;
+  color: #fff;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+.static-content p {
+  font-size: 1.5rem;
+  color: #f0f0f0;
+  margin-bottom: 2rem;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+.static-content button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: rgba(0, 123, 255, 0.8);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+.static-content button:hover {
+  background-color: rgba(0, 86, 179, 0.9);
 }
 
-.App-link {
-  color: #61dafb;
+.static-content > * {
+  pointer-events: auto; /* Enables interaction with child elements */
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.static-content h1 {
+  font-size: 3rem;
+  color: #fff;
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.static-content p {
+  font-size: 1.5rem;
+  color: #f0f0f0;
+  margin-bottom: 2rem;
+  text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+}
+
+.static-content button {
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: rgba(0, 123, 255, 0.8);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.static-content button:hover {
+  background-color: rgba(0, 86, 179, 0.9);
+}
+
+.content {
+  position: relative;
+  min-height: 100vh;
+}
+
+.scrollable-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 150vh; /* Makes the background 1.5 times the viewport height */
+  background-image: url('/public/images/background.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  z-index: 1;
 }

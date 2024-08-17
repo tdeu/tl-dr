@@ -13,14 +13,14 @@
   }
   
   .repoItem a {
-    font-size: 18px;
-    color: #0366d6;
+    font-size: 15px;
+    color: white;
     text-decoration: none;
   }
   
   .repoItem p {
     margin-top: 5px;
-    color: #586069;
+    color: white
   }
   
   .repoDate {

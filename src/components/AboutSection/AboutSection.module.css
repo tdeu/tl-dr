@@ -1,0 +1,28 @@
+.aboutSection {
+  padding: 1.5rem;
+  max-width: 800px;
+  width: 100%;
+  font-family: 'Cascadia Code', monospace;
+  color: white;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+  font-size: 1.1rem;
+  background-color: rgba(135, 206, 235, 0.4);    
+  border-radius: 15px;
+  margin-right: 2rem;
+  align-self: flex-end;
+  
+}
+
+.aboutSection h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (max-width: 768px) {
+  .aboutSection {
+    margin-right: 0;
+    padding: 1.5rem;
+  }
+
+}
+

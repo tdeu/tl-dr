@@ -6,20 +6,20 @@
   
   .articleItem {
     margin-bottom: 20px;
-    padding: 15px;
+    padding: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     list-style-type: none;
   }
   
   .articleItem a {
-    font-size: 18px;
-    color: #0366d6;
+    font-size: 15px;
+    color: white;
     text-decoration: none;
   }
   
   .articleItem p {
     margin-top: 5px;
-    color: #586069;
+    color: white;
     font-size: 0.9em;
   }

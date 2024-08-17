@@ -1,0 +1,40 @@
+.codesSection {
+  padding: 2rem;
+  font-family: 'Cascadia Code', monospace;
+  background-color: rgba(135, 206, 235, 0.3);
+  border-radius: 15px;
+  margin-bottom: 2rem;
+
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+  .codesSection,
+  .wordsSection {
+    padding: 1rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .repoContainer {
+    border: 2px solid #4a90e2;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  
+}

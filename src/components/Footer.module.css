@@ -1,0 +1,37 @@
+.footer {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 1rem;
+  text-align: center;
+  width: 100%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.footer.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+.socialIcons {
+  margin-bottom: 0.5rem;
+}
+
+.preselected {
+  background-color: black;
+  color: white !important;
+  padding: 2px 4px;
+  border-radius: 3px;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.preselected:hover {
+  opacity: 0.8;
+}
+
+.romanNumeral {
+  font-size: 0.9rem;
+  color: #333;
+}

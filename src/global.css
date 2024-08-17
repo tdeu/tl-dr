@@ -1,0 +1,95 @@
+:root {
+  --primary-color: rgba(248, 215, 218, 0.9);
+  --accent-color: #4a90e2;
+  --text-color: #ffffff;
+  --background-overlay: rgba(0, 0, 0, 0.6);
+  --section-bg-color: rgba(135, 206, 235, 0.3);
+  --title-font-size: 2.2rem; /* Increased from 2rem to 2.5rem */
+
+}
+h2.section-title {
+  font-family: 'Cascadia Code', monospace;
+  font-size: var(--title-font-size);
+  color: var(--text-color);
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+.triangle {
+  background: linear-gradient(to bottom right, var(--primary-color) 50%, rgba(248, 215, 218, 0.7) 100%);
+}
+
+.content-box {
+  background-color: var(--section-bg-color);
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  margin-bottom: 2rem;
+  animation: fadeIn 0.5s ease-out;
+}
+
+h1, h2, h3 {
+  font-family: 'Cascadia Code', monospace;
+  color: var(--text-color);
+  margin-bottom: 1rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+p {
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: opacity 0.3s ease;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+.preselected {
+  background-color: #4a90e2;
+  color: white !important;
+  padding: 2px 4px;
+  border-radius: 3px;
+  text-decoration: none;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.preselected:hover {
+  opacity: 0.8;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .content-box {
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+}

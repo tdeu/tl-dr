@@ -10,9 +10,8 @@ const MediumArticles = ({ username }) => {
   useEffect(() => {
     const fetchArticles = async () => {
       try {
-        // We're using a CORS proxy here. You might want to set up your own proxy server for production.
         const response = await axios.get(`https://api.rss2json.com/v1/api.json?rss_url=https://medium.com/feed/@${username}`);
-        setArticles(response.data.items);
+        setArticles(response.data.items.slice(0, 5)); // Only take the first 5 articles
         setLoading(false);
       } catch (err) {
         setError('Failed to fetch articles');
@@ -34,8 +33,8 @@ const MediumArticles = ({ username }) => {
             <a href={article.link} target="_blank" rel="noopener noreferrer">
               {article.title}
             </a>
-            <p>{article.pubDate}</p>
-          </li>
+            <p>Published on: {new Date(article.pubDate).toLocaleDateString()}</p>
+            </li>
         ))}
       </ul>
     </div>

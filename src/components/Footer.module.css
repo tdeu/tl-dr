@@ -1,5 +1,5 @@
 .footer {
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(165, 214, 167, 0.8);
   padding: 1rem;
   text-align: center;
   width: 100%;
@@ -14,6 +14,10 @@
 }
 
 .socialIcons {
+  margin-bottom: 0.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
   margin-bottom: 0.5rem;
 }
 
@@ -32,6 +36,20 @@
 }
 
 .romanNumeral {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.iconLink {
+  color: #333;
+  transition: color 0.3s ease;
+}
+.iconLink:hover {
+  color: #4a90e2;
+}
+
+.romanNumeral {
+  font-weight: bold;
   font-size: 0.9rem;
   color: #333;
 }

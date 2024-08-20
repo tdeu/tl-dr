@@ -26,3 +26,20 @@
 
 }
 
+.logoLink {
+  display: inline-block;
+  transition: filter 0.3s ease;
+}
+
+.logoLink:hover .logo {
+  filter: brightness(0) saturate(100%) invert(56%) sepia(83%) saturate(1095%) hue-rotate(188deg) brightness(96%) contrast(98%);
+}
+
+.section-title:hover .logoLink .logo {
+  filter: brightness(0) saturate(100%) invert(56%) sepia(83%) saturate(1095%) hue-rotate(188deg) brightness(96%) contrast(98%);
+}
+
+
+
+
+

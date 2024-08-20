@@ -4,7 +4,36 @@ import styles from './AboutSection.module.css';
 const AboutSection = () => {
   return (
     <div className={`${styles.aboutSection} content-box`}>
-      <h2 className="section-title">gm</h2>
+      <h2 className={`section-title ${styles.logoContainer}`} style={{ display: 'flex', alignItems: 'center', gap: '0px' }}>
+        <a 
+          href="https://github.com/tdeu" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          style={{ lineHeight: 0 }}
+          className={styles.logoLink}
+        >
+          <img 
+            src="/images/Github_logo.svg" 
+            alt="GitHub Profile" 
+            style={{ height: '1.5em', verticalAlign: 'middle' }}
+            className={styles.logo}
+          />
+        </a>
+        <a 
+          href="https://medium.com/@0xkodit" 
+          target="_blank" 
+          rel="noopener noreferrer"
+          style={{ lineHeight: 0, position: 'relative', left: '-8px', top: '-5px' }}
+          className={styles.logoLink}
+        >
+          <img 
+            src="/images/logo_medium.svg" 
+            alt="Medium Profile" 
+            style={{ height: '1.4em', verticalAlign: 'middle' }}
+            className={styles.logo}
+          />
+        </a>
+      </h2>
       <p>
         I am <span className="preselected">TL;DR</span> - these are both my initials and my approach to life and work. I believe in keeping codes and words simple and concise. My passion for innovation, blockchain, maps, and nature fuels my creativity, allowing me to cultivate clarity in the digital wilderness.
       </p>

@@ -2,12 +2,13 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 30vw;
-  height: 30vw;
-  max-width: 400px;
-  max-height: 400px;
+  width: 25vw;
+  height: 25vw;
+  max-width: 350px;
+  max-height: 350px;
   z-index: 1000;
   overflow: hidden;
+  font-family: 'Cascadia Code', monospace;
 }
 
 .homepage::before {
@@ -27,24 +28,36 @@
 }
 
 .mainTitle {
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 0.5rem;
-  display: inline-block; /* Changed to inline-block */
-  background-color: black; /* Added black background */
-  color: white; /* Set text color to white */
-  padding: 0.1em 0.2em; /* Added padding for better appearance */
-  
+  display: inline-block;
+  background-color: black;
+  color: white;
+  padding: 0.1em 0.2em;
+  border-radius: 0.1em;
+  font-family: 'Cascadia Code', monospace;
 }
 
 .subtitle {
-  font-size: 1.4rem;
+  font-size: 1.65rem; /* Increased from 1rem */
   line-height: 1.2;
   color: black;
+  margin-top: 0.5rem;
+  font-weight: bold;
+  font-family: 'Cascadia Code', monospace;
 }
 
 @media (max-width: 768px) {
   .homepage {
-    width: 50vw;
-    height: 50vw;
+    width: 40vw;
+    height: 40vw;
+  }
+  
+  .mainTitle {
+    font-size: 2rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem; /* Increased from 0.8rem */
   }
 }

@@ -8,12 +8,7 @@ const Triangle = () => {
         <h1 className={styles.mainTitle}>
           <span className={styles.selectedText}>TL;DR</span>
         </h1>
-        <h2 className={styles.subtitle}>
-          Cultivating <br />
-          clarity in  <br />
-          the digital <br />
-          wilderness
-        </h2>
+        <p className={styles.subtitle}>Cultivating <br /> Digital <br />Clarity</p>
       </div>
     </div>
   );

@@ -1,29 +1,21 @@
 .aboutSection {
-  padding: 1.5rem;
-  max-width: 800px;
+  padding: 2.1rem;
+  max-width: 1120px;
   width: 100%;
   font-family: 'Cascadia Code', monospace;
   color: white;
   text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
-  font-size: 1.1rem;
+  font-size: 1.54rem;
   background-color: rgba(135, 206, 235, 0.4);    
-  border-radius: 15px;
-  margin-right: 2rem;
+  border-radius: 21px;
+  margin-right: 3rem;
   align-self: flex-end;
-  
 }
 
-.aboutSection h2 {
-  font-size: 2.5rem;
-  margin-bottom: 1.5rem;
-}
-
-@media (max-width: 768px) {
-  .aboutSection {
-    margin-right: 0;
-    padding: 1.5rem;
-  }
-
+.logoContainer {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 2.1rem;
 }
 
 .logoLink {
@@ -35,11 +27,31 @@
   filter: brightness(0) saturate(100%) invert(56%) sepia(83%) saturate(1095%) hue-rotate(188deg) brightness(96%) contrast(98%);
 }
 
-.section-title:hover .logoLink .logo {
-  filter: brightness(0) saturate(100%) invert(56%) sepia(83%) saturate(1095%) hue-rotate(188deg) brightness(96%) contrast(98%);
+.logo {
+  height: 2.1em;
+  vertical-align: middle;
 }
 
+.mediumLogo {
+  height: 1.96em;
+  position: relative;
+  left: -11px;
+  top: -7px;
+}
 
+@media (max-width: 768px) {
+    .aboutSection {
+      position: absolute;
+      bottom: 6%; /* Adjust this value to position it as desired */
+      right: 5%;
+      width: 80%;
+      max-width: 400px;
+      padding: 1.5rem;
+      margin-right: 0;
+      font-size: 0.9rem;
+  }
 
-
-
+  .logoContainer {
+    justify-content: center;
+  }
+}

@@ -39,7 +39,7 @@
 }
 
 .subtitle {
-  font-size: 1.65rem; /* Increased from 1rem */
+  font-size: 1.65rem;
   line-height: 1.2;
   color: black;
   margin-top: 0.5rem;
@@ -49,15 +49,39 @@
 
 @media (max-width: 768px) {
   .homepage {
-    width: 40vw;
-    height: 40vw;
+    width: 45vw;
+    height: 45vw;
+    max-width: none;
+    max-height: none;
   }
   
   .mainTitle {
-    font-size: 2rem;
+    font-size: 1.5rem;
+    margin-bottom: 0.3rem;
   }
   
   .subtitle {
-    font-size: 1rem; /* Increased from 0.8rem */
+    font-size: 0.9rem;
+    line-height: 1.3;
+    margin-top: 0.3rem;
+  }
+
+  .heroContent {
+    padding: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .homepage {
+    width: 50vw;
+    height: 50vw;
+  }
+  
+  .mainTitle {
+    font-size: 1.2rem;
+  }
+  
+  .subtitle {
+    font-size: 0.8rem;
   }
 }

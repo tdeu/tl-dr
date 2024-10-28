@@ -1,0 +1,87 @@
+.hamburgerMenu {
+  position: fixed;
+  top: 40px;
+  right: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  z-index: 1000;
+}
+
+.hamburgerItem {
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.bar {
+  width: 150px;
+  height: 8px;
+  background-color: black;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hamburgerItem.hovered .bar {
+  height: 40px;
+  background-color: black;
+}
+
+.label {
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Cascadia Code', monospace;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.hamburgerItem.hovered .label {
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .hamburgerMenu {
+    top: 20px;
+    right: 20px;
+    gap: 12px;
+  }
+
+  .bar {
+    width: 80px;
+    height: 6px;
+  }
+
+  .hamburgerItem.hovered .bar {
+    height: 32px;
+  }
+
+  .label {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hamburgerMenu {
+    top: 15px;
+    right: 15px;
+    gap: 10px;
+  }
+
+  .bar {
+    width: 60px;
+    height: 5px;
+  }
+
+  .hamburgerItem.hovered .bar {
+    height: 28px;
+  }
+
+  .label {
+    font-size: 12px;
+  }
+}

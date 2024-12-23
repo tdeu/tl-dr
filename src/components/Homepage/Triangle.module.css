@@ -2,13 +2,15 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 25vw;
-  height: 25vw;
-  max-width: 350px;
-  max-height: 350px;
-  z-index: 1000;
-  overflow: hidden;
-  font-family: 'Cascadia Code', monospace;
+  width: 35%;
+  height: 60%;
+  background: linear-gradient(
+    to bottom right,
+    var(--primary-color) 50%,
+    rgba(248, 215, 218, 0.7) 100%
+  );
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+  z-index: 100;
 }
 
 .homepage::before {
@@ -23,8 +25,8 @@
 
 .heroContent {
   position: relative;
-  z-index: 1001;
-  padding: 1rem;
+  z-index: 2;
+  padding: 2rem;
 }
 
 .mainTitle {

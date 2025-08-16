@@ -6,8 +6,7 @@ const HamburgerMenu = ({ onSectionClick }) => {
 
   const menuItems = [
     { id: 'me', label: 'About Me' },
-    { id: 'codes', label: 'Codes' },
-    { id: 'words', label: 'Words' }
+    { id: 'activity', label: 'Activity' }
   ];
 
   const scrollToSection = (sectionId) => {

@@ -37,7 +37,7 @@ function App() {
 
   const handleSectionClick = (sectionId) => {
     // Update this logic since we now have a unified section instead of separate 'codes' section
-    setIsTriangleVisible(sectionId !== 'work' && sectionId !== 'codes');
+    setIsTriangleVisible(sectionId !== 'work' && sectionId !== 'activity');
   };
 
   return (
@@ -49,7 +49,7 @@ function App() {
           <AboutSection isMobile={isMobile} />
         </div>
       </div>
-      <div className={styles.contentSection}>
+      <div id="activity" className={styles.contentSection}>
         <div className={styles.flexContainer}>
           <div className={styles.unifiedSection}>
             <UnifiedGitHubFeed />

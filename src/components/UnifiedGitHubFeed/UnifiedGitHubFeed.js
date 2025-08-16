@@ -2,6 +2,15 @@
 import React, { useState, useEffect } from 'react';
 import styles from './UnifiedGitHubFeed.module.css';
 
+// Import language logos
+import jsLogo from '../../images/logos/javascript.svg';
+import tsLogo from '../../images/logos/typescript.svg';
+import pythonLogo from '../../images/logos/python.svg';
+import htmlLogo from '../../images/logos/html.svg';
+import cssLogo from '../../images/logos/css.svg';
+import reactLogo from '../../images/logos/react.svg';
+import solidityLogo from '../../images/logos/solidity.svg';
+
 const UnifiedGitHubFeed = () => {
   const [feedItems, setFeedItems] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -12,24 +21,16 @@ const UnifiedGitHubFeed = () => {
 
   // Debug logging
   useEffect(() => {
-    console.log('=== GITHUB TOKEN DEBUG ===');
-    console.log('GitHub Token available:', !!GITHUB_TOKEN);
-    console.log('GitHub Token length:', GITHUB_TOKEN ? GITHUB_TOKEN.length : 0);
-    console.log('GitHub Token preview:', GITHUB_TOKEN ? `${GITHUB_TOKEN.substring(0, 8)}...` : 'None');
-    console.log('GitHub Username:', GITHUB_USERNAME);
-    console.log('All env vars:', Object.keys(process.env).filter(key => key.includes('GITHUB')));
-    console.log('NODE_ENV:', process.env.NODE_ENV);
-    console.log('========================');
+    testGitHubToken();
+    fetchUnifiedFeed();
   }, []);
 
   // Test token validity
   const testGitHubToken = async () => {
     console.log('🔍 Test Token button clicked!');
-    alert('Testing GitHub token... Check console for details.');
     
     if (!GITHUB_TOKEN) {
       console.log('❌ No GitHub token found');
-      alert('No GitHub token found!');
       return false;
     }
     
@@ -48,17 +49,14 @@ const UnifiedGitHubFeed = () => {
       if (response.ok) {
         const user = await response.json();
         console.log('✅ Token is valid for user:', user.login);
-        alert(`✅ Token is valid for user: ${user.login}`);
         return true;
       } else {
         const errorText = await response.text();
         console.error('❌ Token validation failed:', response.status, response.statusText, errorText);
-        alert(`❌ Token validation failed: ${response.status} ${response.statusText}`);
         return false;
       }
     } catch (err) {
       console.error('💥 Error testing token:', err);
-      alert(`💥 Error testing token: ${err.message}`);
       return false;
     }
   };
@@ -74,7 +72,7 @@ const UnifiedGitHubFeed = () => {
       
       // Fetch user events (includes pushes, commits, etc.)
       const eventsResponse = await fetch(
-        `https://api.github.com/users/${GITHUB_USERNAME}/events?per_page=50`,
+        `https://api.github.com/users/${GITHUB_USERNAME}/events?per_page=200`,
         {
           headers: GITHUB_TOKEN ? {
             'Authorization': `token ${GITHUB_TOKEN}`,
@@ -107,11 +105,15 @@ const UnifiedGitHubFeed = () => {
       // Process events and create unified feed items
       const processedItems = await processEvents(events);
       
-      // Sort by date and limit to 10 items
+      console.log(`📊 Processed ${processedItems.length} items from GitHub events`);
+      
+      // Sort by date and limit to 15 items to ensure we have enough variety
       const sortedItems = processedItems
         .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
-        .slice(0, 10);
-
+        .slice(0, 15);
+      
+      console.log(`🎯 Displaying ${sortedItems.length} items in the feed`);
+      
       setFeedItems(sortedItems);
     } catch (err) {
       console.error('Error fetching unified feed:', err);
@@ -124,11 +126,15 @@ const UnifiedGitHubFeed = () => {
   const processEvents = async (events) => {
     const items = [];
     const seenRepos = new Set();
+    let processedCount = 0;
+    const maxItems = 25; // Process more items to ensure variety
 
     for (const event of events) {
-      // Only process PushEvent for now
-      if (event.type === 'PushEvent' && !seenRepos.has(event.repo.name)) {
+      // Process more event types and allow more variety
+      if ((event.type === 'PushEvent' || event.type === 'CreateEvent' || event.type === 'ForkEvent') && 
+          !seenRepos.has(event.repo.name) && processedCount < maxItems) {
         seenRepos.add(event.repo.name);
+        processedCount++;
         
         try {
           // Get repository details
@@ -147,6 +153,31 @@ const UnifiedGitHubFeed = () => {
           if (!repoResponse.ok) continue;
           
           const repo = await repoResponse.json();
+          
+          // Get repository languages
+          const languagesResponse = await fetch(
+            `https://api.github.com/repos/${event.repo.name}/languages`,
+            {
+              headers: GITHUB_TOKEN ? {
+                'Authorization': `token ${GITHUB_TOKEN}`,
+                'Accept': 'application/vnd.github.v3+json'
+              } : {
+                'Accept': 'application/vnd.github.v3+json'
+              }
+            }
+          );
+          
+          let languages = [];
+          if (languagesResponse.ok) {
+            const languagesData = await languagesResponse.json();
+            // Convert languages object to array and sort by bytes (most used first)
+            languages = Object.entries(languagesData)
+              .sort(([,a], [,b]) => b - a)
+              .map(([lang]) => lang);
+          } else {
+            // Fallback to primary language if languages API fails
+            languages = repo.language ? [repo.language] : [];
+          }
           
           // Check if this is an article commit (tl-dr repo with .md files)
           let isArticle = false;
@@ -172,7 +203,7 @@ const UnifiedGitHubFeed = () => {
             description: repo.description || '',
             updated_at: event.created_at,
             html_url: repo.html_url,
-            language: repo.language,
+            languages: languages,
             private: repo.private,
             commit_message: event.payload.commits?.[0]?.message || 'Updated repository',
             article_title: articleTitle,
@@ -218,26 +249,59 @@ const UnifiedGitHubFeed = () => {
     });
   };
 
-  const getLanguageColor = (language) => {
-    const colors = {
-      JavaScript: '#f1e05a',
-      Python: '#3572A5',
-      HTML: '#e34c26',
-      CSS: '#563d7c',
-      TypeScript: '#2b7489',
-      React: '#61dafb',
-      Vue: '#4FC08D',
-      Java: '#b07219',
-      'C++': '#f34b7d',
-      C: '#555555',
-      PHP: '#4F5D95',
-      Ruby: '#701516',
-      Go: '#00ADD8',
-      Rust: '#dea584',
-      Swift: '#ffac45',
-      Kotlin: '#F18E33'
+  const getLanguageDisplay = (language) => {
+    // Map of language names to their actual logo imports
+    const languageLogos = {
+      JavaScript: jsLogo,
+      TypeScript: tsLogo,
+      Python: pythonLogo,
+      HTML: htmlLogo,
+      CSS: cssLogo,
+      React: reactLogo,
+      Vue: null,
+      Java: null,
+      'C++': null,
+      C: null,
+      PHP: null,
+      Ruby: null,
+      Go: null,
+      Rust: null,
+      Swift: null,
+      Kotlin: null,
+      'C#': null,
+      Solidity: solidityLogo
     };
-    return colors[language] || '#8b949e';
+    
+    // Fallback icons if logos aren't available
+    const fallbackIcons = {
+      JavaScript: 'JS',
+      TypeScript: 'TS',
+      Python: 'Py',
+      HTML: 'HTML',
+      CSS: 'CSS',
+      React: '⚛️',
+      Vue: 'Vue',
+      Java: 'Java',
+      'C++': 'C++',
+      C: 'C',
+      PHP: 'PHP',
+      Ruby: 'Ruby',
+      Go: 'Go',
+      Rust: 'Rust',
+      Swift: 'Swift',
+      Kotlin: 'Kt',
+      'C#': 'C#',
+      Solidity: 'Sol'
+    };
+    
+    const logoFile = languageLogos[language];
+    const fallback = fallbackIcons[language] || language;
+    
+    return {
+      logoFile,
+      fallback,
+      hasLogo: !!logoFile
+    };
   };
 
   if (loading) {
@@ -316,47 +380,54 @@ const UnifiedGitHubFeed = () => {
           <div key={item.id} className={styles.feedItem}>
             <div className={styles.itemHeader}>
               <div className={styles.itemInfo}>
-                <span className={`${styles.itemType} ${styles[item.type]}`}>
-                  {item.type === 'article' ? '📝' : '💻'}
-                </span>
                 <h3 className={styles.itemName}>
                   {item.type === 'article' && item.article_title ? (
                     <span className={styles.articleTitle}>{item.article_title}</span>
                   ) : (
-                    <a 
-                      href={item.private ? '#' : item.html_url} 
-                      target={item.private ? '_self' : '_blank'}
-                      rel="noopener noreferrer"
-                      className={styles.itemLink}
-                      onClick={item.private ? (e) => e.preventDefault() : undefined}
-                    >
-                      {item.name}
-                    </a>
+                    <>
+                      <a 
+                        href={item.private ? '#' : item.html_url} 
+                        target={item.private ? '_self' : '_blank'}
+                        rel="noopener noreferrer"
+                        className={styles.itemLink}
+                        onClick={item.private ? (e) => e.preventDefault() : undefined}
+                      >
+                        {item.full_name}
+                      </a>
+                      <span className={styles.commitMessage}> • {item.commit_message}</span>
+                    </>
                   )}
                   {item.private && <span className={styles.privateLabel}>Private</span>}
                 </h3>
+                {item.description && (
+                  <p className={styles.description}>{item.description}</p>
+                )}
               </div>
               
               <div className={styles.itemMeta}>
-                {item.language && (
-                  <span 
-                    className={styles.language}
-                    style={{ '--language-color': getLanguageColor(item.language) }}
-                  >
-                    {item.language}
-                  </span>
+                {item.languages && item.languages.length > 0 && (
+                  <div className={styles.language}>
+                    {item.languages.map((lang) => {
+                      const { logoFile, fallback, hasLogo } = getLanguageDisplay(lang);
+                      return (
+                        <span 
+                          key={lang} 
+                          className={styles.languageTag}
+                        >
+                          {hasLogo ? (
+                            <img src={logoFile} alt={lang} width="16" height="16" />
+                          ) : (
+                            fallback
+                          )}
+                        </span>
+                      );
+                    })}
+                  </div>
                 )}
                 <span className={styles.date}>
                   Updated on: {formatDate(item.updated_at)}
                 </span>
               </div>
-            </div>
-            
-            <div className={styles.itemDetails}>
-              <p className={styles.commitMessage}>{item.commit_message}</p>
-              {item.description && (
-                <p className={styles.description}>{item.description}</p>
-              )}
             </div>
 
             {!item.private && (

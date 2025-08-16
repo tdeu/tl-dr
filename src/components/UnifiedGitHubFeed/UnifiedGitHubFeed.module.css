@@ -1,0 +1,228 @@
+/* UnifiedGitHubFeed.module.css */
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    color: #ffffff;
+  }
+  
+  .title {
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    text-align: center;
+    color: #ffffff;
+    font-family: 'Cascadia Code', monospace;
+  }
+  
+  .subtitle {
+    font-size: 1.1rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: rgba(255, 255, 255, 0.8);
+    font-style: italic;
+  }
+  
+  .loading, .error {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.1rem;
+    color: rgba(255, 255, 255, 0.8);
+  }
+  
+  .error {
+    color: #ff6b6b;
+  }
+  
+  .feedList {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .feedItem {
+    background: rgba(248, 215, 218, 0.1);
+    border: 1px solid rgba(248, 215, 218, 0.3);
+    border-radius: 15px;
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+  }
+  
+  .feedItem:hover {
+    background: rgba(248, 215, 218, 0.15);
+    border-color: rgba(248, 215, 218, 0.5);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+  }
+  
+  .itemHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+    gap: 1rem;
+  }
+  
+  .itemInfo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+  }
+  
+  .itemType {
+    font-size: 1.2rem;
+    padding: 0.25rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 40px;
+    height: 40px;
+  }
+  
+  .itemType.article {
+    background: rgba(74, 144, 226, 0.2);
+  }
+  
+  .itemType.code {
+    background: rgba(40, 167, 69, 0.2);
+  }
+  
+  .itemName {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  
+  .itemLink {
+    color: #4a90e2;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .itemLink:hover {
+    color: #357abd;
+    text-decoration: underline;
+  }
+  
+  .articleTitle {
+    color: #ffffff;
+    font-weight: 600;
+  }
+  
+  .privateLabel {
+    font-size: 0.75rem;
+    background: rgba(255, 193, 7, 0.2);
+    color: #ffc107;
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-weight: 500;
+    border: 1px solid rgba(255, 193, 7, 0.3);
+  }
+  
+  .itemMeta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.5rem;
+    text-align: right;
+  }
+  
+  .language {
+    font-size: 0.85rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 12px;
+    background: var(--language-color, #8b949e);
+    color: #ffffff;
+    font-weight: 500;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+  
+  .date {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-family: 'Cascadia Code', monospace;
+  }
+  
+  .itemDetails {
+    margin-bottom: 1rem;
+  }
+  
+  .commitMessage {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+    font-weight: 500;
+    font-family: 'Cascadia Code', monospace;
+    line-height: 1.4;
+  }
+  
+  .description {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.5;
+    margin: 0;
+  }
+  
+  .itemStats {
+    display: flex;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(248, 215, 218, 0.2);
+  }
+  
+  .stat {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+  
+  /* Mobile responsive */
+  @media (max-width: 768px) {
+    .container {
+      padding: 1rem 0.5rem;
+    }
+    
+    .title {
+      font-size: 1.8rem;
+    }
+    
+    .subtitle {
+      font-size: 1rem;
+      margin-bottom: 2rem;
+    }
+    
+    .feedItem {
+      padding: 1rem;
+    }
+    
+    .itemHeader {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.75rem;
+    }
+    
+    .itemMeta {
+      align-items: flex-start;
+      text-align: left;
+      width: 100%;
+    }
+    
+    .itemName {
+      font-size: 1.1rem;
+    }
+    
+    .itemStats {
+      gap: 0.75rem;
+    }
+  }

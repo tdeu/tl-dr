@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './App.module.css';
 import Triangle from './components/Homepage/Triangle';
 import AboutSection from './components/AboutSection/AboutSection';
-import CodesSection from './components/Codes/CodesSection';
-import WordsSection from './components/Words/WordsSection';
+import UnifiedGitHubFeed from './components/UnifiedGitHubFeed/UnifiedGitHubFeed';
 import Footer from './components/Footer';
 import HamburgerMenu from './components/Hamburger/HamburgerMenu';
 import './global.css';
@@ -37,7 +36,8 @@ function App() {
   }, []);
 
   const handleSectionClick = (sectionId) => {
-    setIsTriangleVisible(sectionId !== 'codes');
+    // Update this logic since we now have a unified section instead of separate 'codes' section
+    setIsTriangleVisible(sectionId !== 'work' && sectionId !== 'codes');
   };
 
   return (
@@ -51,11 +51,8 @@ function App() {
       </div>
       <div className={styles.contentSection}>
         <div className={styles.flexContainer}>
-          <div className={styles.flexItem}>
-            <CodesSection />
-          </div>
-          <div className={styles.flexItem}>
-            <WordsSection />
+          <div className={styles.unifiedSection}>
+            <UnifiedGitHubFeed />
           </div>
         </div>
       </div>

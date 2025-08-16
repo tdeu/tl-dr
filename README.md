@@ -2,6 +2,24 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## GitHub API Setup
+
+To resolve the "Failed to fetch GitHub events" error, you need to set up a GitHub Personal Access Token:
+
+1. Go to [GitHub Settings > Developer settings > Personal access tokens](https://github.com/settings/tokens)
+2. Click "Generate new token (classic)"
+3. Give it a name (e.g., "TLDR App")
+4. Select scopes: `public_repo` and `read:user`
+5. Click "Generate token"
+6. Copy the token
+7. Create a `.env` file in your project root with:
+   ```
+   REACT_APP_GITHUB_TOKEN=your_token_here
+   ```
+8. Restart your development server
+
+**Note:** Without a token, you're limited to 60 API requests per hour, which can cause rate limiting errors.
+
 ## Available Scripts
 
 In the project directory, you can run:

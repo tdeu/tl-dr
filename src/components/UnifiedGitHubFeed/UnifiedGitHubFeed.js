@@ -10,7 +10,61 @@ const UnifiedGitHubFeed = () => {
   const GITHUB_TOKEN = process.env.REACT_APP_GITHUB_TOKEN;
   const GITHUB_USERNAME = 'tdeu';
 
+  // Debug logging
   useEffect(() => {
+    console.log('=== GITHUB TOKEN DEBUG ===');
+    console.log('GitHub Token available:', !!GITHUB_TOKEN);
+    console.log('GitHub Token length:', GITHUB_TOKEN ? GITHUB_TOKEN.length : 0);
+    console.log('GitHub Token preview:', GITHUB_TOKEN ? `${GITHUB_TOKEN.substring(0, 8)}...` : 'None');
+    console.log('GitHub Username:', GITHUB_USERNAME);
+    console.log('All env vars:', Object.keys(process.env).filter(key => key.includes('GITHUB')));
+    console.log('NODE_ENV:', process.env.NODE_ENV);
+    console.log('========================');
+  }, []);
+
+  // Test token validity
+  const testGitHubToken = async () => {
+    console.log('🔍 Test Token button clicked!');
+    alert('Testing GitHub token... Check console for details.');
+    
+    if (!GITHUB_TOKEN) {
+      console.log('❌ No GitHub token found');
+      alert('No GitHub token found!');
+      return false;
+    }
+    
+    console.log('🔑 Testing token:', GITHUB_TOKEN.substring(0, 8) + '...');
+    
+    try {
+      const response = await fetch('https://api.github.com/user', {
+        headers: {
+          'Authorization': `token ${GITHUB_TOKEN}`,
+          'Accept': 'application/vnd.github.v3+json'
+        }
+      });
+      
+      console.log('📡 API Response status:', response.status, response.statusText);
+      
+      if (response.ok) {
+        const user = await response.json();
+        console.log('✅ Token is valid for user:', user.login);
+        alert(`✅ Token is valid for user: ${user.login}`);
+        return true;
+      } else {
+        const errorText = await response.text();
+        console.error('❌ Token validation failed:', response.status, response.statusText, errorText);
+        alert(`❌ Token validation failed: ${response.status} ${response.statusText}`);
+        return false;
+      }
+    } catch (err) {
+      console.error('💥 Error testing token:', err);
+      alert(`💥 Error testing token: ${err.message}`);
+      return false;
+    }
+  };
+
+  useEffect(() => {
+    testGitHubToken();
     fetchUnifiedFeed();
   }, []);
 
@@ -32,7 +86,20 @@ const UnifiedGitHubFeed = () => {
       );
 
       if (!eventsResponse.ok) {
-        throw new Error('Failed to fetch GitHub events');
+        const errorText = await eventsResponse.text();
+        console.error('GitHub API response:', eventsResponse.status, eventsResponse.statusText, errorText);
+        
+        if (eventsResponse.status === 403) {
+          throw new Error('GitHub API rate limit exceeded. Please try again later or add a GitHub token.');
+        } else if (eventsResponse.status === 401) {
+          throw new Error('GitHub API unauthorized. Please check your token is valid and has the correct permissions (public_repo, read:user).');
+        } else if (eventsResponse.status === 404) {
+          throw new Error('GitHub user not found. Please check the username.');
+        } else if (eventsResponse.status >= 500) {
+          throw new Error('GitHub API server error. Please try again later.');
+        } else {
+          throw new Error(`GitHub API error: ${eventsResponse.status} ${eventsResponse.statusText}`);
+        }
       }
 
       const events = await eventsResponse.json();
@@ -184,7 +251,55 @@ const UnifiedGitHubFeed = () => {
   if (error) {
     return (
       <div className={styles.container}>
-        <div className={styles.error}>Error: {error}</div>
+        <h2 className={styles.title}>Codes and Words</h2>
+        <p className={styles.subtitle}>
+          Latest experiments, ideas, and articles from my digital workshop
+        </p>
+        <div className={styles.error}>
+          <p>Error: {error}</p>
+          <p style={{ fontSize: '0.9rem', marginTop: '1rem', opacity: 0.8 }}>
+            {!GITHUB_TOKEN && (
+              <>
+                💡 <strong>Tip:</strong> Add a GitHub token to your environment variables 
+                (REACT_APP_GITHUB_TOKEN) to avoid rate limiting and access private repositories.
+              </>
+            )}
+            {GITHUB_TOKEN && error.includes('401') && (
+              <>
+                🔑 <strong>Token Issue:</strong> Your GitHub token appears to be invalid or expired. 
+                Please check the console for debugging info and regenerate your token.
+              </>
+            )}
+          </p>
+          <button 
+            onClick={fetchUnifiedFeed} 
+            style={{
+              marginTop: '1rem',
+              padding: '0.5rem 1rem',
+              backgroundColor: 'rgba(255, 255, 255, 0.1)',
+              border: '1px solid rgba(255, 255, 255, 0.3)',
+              borderRadius: '8px',
+              color: 'white',
+              cursor: 'pointer',
+              marginRight: '1rem'
+            }}
+          >
+            Try Again
+          </button>
+          <button 
+            onClick={testGitHubToken} 
+            style={{
+              padding: '0.5rem 1rem',
+              backgroundColor: 'rgba(255, 255, 255, 0.1)',
+              border: '1px solid rgba(255, 255, 255, 0.3)',
+              borderRadius: '8px',
+              color: 'white',
+              cursor: 'pointer'
+            }}
+          >
+            Test Token
+          </button>
+        </div>
       </div>
     );
   }

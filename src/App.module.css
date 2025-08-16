@@ -49,6 +49,15 @@
   flex: 1;
 }
 
+.unifiedSection {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+/* Keep your existing .flexItem styles as backup, but the unified section will use full width */
+
 /* Mobile styles */
 @media (max-width: 768px) {
   .topSection {

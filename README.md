@@ -1,24 +1,40 @@
-# Getting Started with Create React App
+# TL;DR - Personal Portfolio
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A clean, modern React portfolio website that embodies the "Too Long; Didn't Read" philosophy - keeping things simple, concise, and focused on what matters.
+
+## About
+
+This is my personal portfolio website showcasing my approach to life and work: keeping codes and words simple and concise. The site features:
+
+- **About Section**: Personal introduction and links to GitHub and Medium profiles
+- **Codes and Words**: Unified feed displaying latest GitHub activity, repositories, and articles
+- **Calendar**: Interactive calendar component
+- **Responsive Design**: Mobile-friendly interface with hamburger navigation
+
+## Features
+
+- Modern React application with CSS modules
+- Real-time GitHub API integration showing recent commits, repositories, and activity
+- Language detection with visual icons for programming languages
+- Responsive design with mobile optimization
+- Clean, minimalist UI reflecting the TL;DR philosophy
 
 ## GitHub API Setup
 
-To resolve the "Failed to fetch GitHub events" error, you need to set up a GitHub Personal Access Token:
+To display GitHub activity, set up a Personal Access Token:
 
 1. Go to [GitHub Settings > Developer settings > Personal access tokens](https://github.com/settings/tokens)
 2. Click "Generate new token (classic)"
-3. Give it a name (e.g., "TLDR App")
+3. Give it a name (e.g., "TLDR Portfolio")
 4. Select scopes: `public_repo` and `read:user`
 5. Click "Generate token"
-6. Copy the token
-7. Create a `.env` file in your project root with:
+6. Create a `.env` file in your project root:
    ```
    REACT_APP_GITHUB_TOKEN=your_token_here
    ```
-8. Restart your development server
+7. Restart your development server
 
-**Note:** Without a token, you're limited to 60 API requests per hour, which can cause rate limiting errors.
+**Note:** Without a token, you're limited to 60 API requests per hour.
 
 ## Available Scripts
 
@@ -57,32 +73,38 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## Tech Stack
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- **React 18** - Modern React with hooks
+- **CSS Modules** - Scoped styling
+- **GitHub API** - Real-time repository and activity data
+- **Responsive Design** - Mobile-first approach
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Project Structure
 
-### Code Splitting
+```
+src/
+├── components/
+│   ├── AboutSection/          # Personal introduction
+│   ├── Calendar/              # Calendar component
+│   ├── Footer.js              # Site footer
+│   ├── Hamburger/             # Mobile navigation
+│   ├── Homepage/              # Triangle animation
+│   └── UnifiedGitHubFeed/     # GitHub activity feed
+├── images/                    # Static assets and logos
+└── global.css                 # Global styles
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Deployment
 
-### Analyzing the Bundle Size
+The site is configured for deployment to [t-l-d-r.be](https://t-l-d-r.be) using the custom deploy script:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+npm run deploy
+```
 
-### Making a Progressive Web App
+This builds the project and copies files to the web server directory.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## License
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Personal portfolio project.

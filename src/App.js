@@ -3,6 +3,7 @@ import styles from './App.module.css';
 import Triangle from './components/Homepage/Triangle';
 import AboutSection from './components/AboutSection/AboutSection';
 import UnifiedGitHubFeed from './components/UnifiedGitHubFeed/UnifiedGitHubFeed';
+import Calendar from './components/Calendar/Calendar';
 import Footer from './components/Footer';
 import HamburgerMenu from './components/Hamburger/HamburgerMenu';
 import './global.css';
@@ -37,7 +38,7 @@ function App() {
 
   const handleSectionClick = (sectionId) => {
     // Update this logic since we now have a unified section instead of separate 'codes' section
-    setIsTriangleVisible(sectionId !== 'work' && sectionId !== 'activity');
+    setIsTriangleVisible(sectionId !== 'work' && sectionId !== 'activity' && sectionId !== 'calendar');
   };
 
   return (
@@ -53,6 +54,13 @@ function App() {
         <div className={styles.flexContainer}>
           <div className={styles.unifiedSection}>
             <UnifiedGitHubFeed />
+          </div>
+        </div>
+      </div>
+      <div id="calendar" className={styles.contentSection}>
+        <div className={styles.flexContainer}>
+          <div className={styles.unifiedSection}>
+            <Calendar />
           </div>
         </div>
       </div>

@@ -3,7 +3,6 @@ import styles from './App.module.css';
 import Triangle from './components/Homepage/Triangle';
 import AboutSection from './components/AboutSection/AboutSection';
 import UnifiedGitHubFeed from './components/UnifiedGitHubFeed/UnifiedGitHubFeed';
-import Calendar from './components/Calendar/Calendar';
 import Footer from './components/Footer';
 import HamburgerMenu from './components/Hamburger/HamburgerMenu';
 import './global.css';
@@ -37,12 +36,12 @@ function App() {
   }, []);
 
   const handleSectionClick = (sectionId) => {
-    // Update this logic since we now have a unified section instead of separate 'codes' section
-    setIsTriangleVisible(sectionId !== 'work' && sectionId !== 'activity' && sectionId !== 'calendar');
+    // Triangle should always stay visible
+    setIsTriangleVisible(true);
   };
 
   return (
-    <div className={styles.app} style={{ backgroundImage: `url(${backgroundImage})` }}>
+    <div className={styles.app} style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(${backgroundImage})` }}>
       <HamburgerMenu onSectionClick={handleSectionClick} />
       <div className={styles.topSection}>
         {isTriangleVisible && <Triangle />}
@@ -54,13 +53,6 @@ function App() {
         <div className={styles.flexContainer}>
           <div className={styles.unifiedSection}>
             <UnifiedGitHubFeed />
-          </div>
-        </div>
-      </div>
-      <div id="calendar" className={styles.contentSection}>
-        <div className={styles.flexContainer}>
-          <div className={styles.unifiedSection}>
-            <Calendar />
           </div>
         </div>
       </div>

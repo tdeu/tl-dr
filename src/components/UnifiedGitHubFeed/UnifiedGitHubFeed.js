@@ -386,18 +386,16 @@ const UnifiedGitHubFeed = () => {
                   ) : (
                     <>
                       <a 
-                        href={item.private ? '#' : item.html_url} 
-                        target={item.private ? '_self' : '_blank'}
+                        href={item.html_url} 
+                        target="_blank"
                         rel="noopener noreferrer"
                         className={styles.itemLink}
-                        onClick={item.private ? (e) => e.preventDefault() : undefined}
                       >
                         {item.full_name}
                       </a>
                       <span className={styles.commitMessage}> • {item.commit_message}</span>
                     </>
                   )}
-                  {item.private && <span className={styles.privateLabel}>Private</span>}
                 </h3>
                 {item.description && (
                   <p className={styles.description}>{item.description}</p>
@@ -407,21 +405,17 @@ const UnifiedGitHubFeed = () => {
               <div className={styles.itemMeta}>
                 {item.languages && item.languages.length > 0 && (
                   <div className={styles.language}>
-                    {item.languages.map((lang) => {
-                      const { logoFile, fallback, hasLogo } = getLanguageDisplay(lang);
-                      return (
-                        <span 
-                          key={lang} 
-                          className={styles.languageTag}
-                        >
-                          {hasLogo ? (
-                            <img src={logoFile} alt={lang} width="16" height="16" />
-                          ) : (
-                            fallback
-                          )}
-                        </span>
-                      );
-                    })}
+                    {item.languages.slice(0, 3).map((lang) => (
+                      <span 
+                        key={lang} 
+                        className={styles.languageTag}
+                      >
+                        {lang}
+                      </span>
+                    ))}
+                    {item.languages.length > 3 && (
+                      <span className={styles.languageTag}>+{item.languages.length - 3}</span>
+                    )}
                   </div>
                 )}
                 <span className={styles.date}>
@@ -430,12 +424,10 @@ const UnifiedGitHubFeed = () => {
               </div>
             </div>
 
-            {!item.private && (
-              <div className={styles.itemStats}>
-                <span className={styles.stat}>⭐ {item.stars}</span>
-                <span className={styles.stat}>🍴 {item.forks}</span>
-              </div>
-            )}
+            <div className={styles.itemStats}>
+              <span className={styles.stat}>⭐ {item.stars}</span>
+              <span className={styles.stat}>🍴 {item.forks}</span>
+            </div>
           </div>
         ))}
       </div>
